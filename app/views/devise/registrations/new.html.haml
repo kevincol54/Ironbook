@@ -1,36 +1,39 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, required: true, autofocus: true
-  %div
-    = f.label :name
-    %br/
-    = f.text_field :name, required: true
-  %div
-    = f.label :location
-    %br/
-    = f.text_field :location, required: true
-  %div
-    = f.label :course
-    %br/
-    = f.text_field :course, required: true
-  %div
-    = f.label :phone
-    %br/
-    = f.telephone_field :phone, required: true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password, required: true, autocomplete: "off", placeholder: '8 character minimum'
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, required: true, autocomplete: "off"
-    %br/
-    = f.file_field :image
-    %br/
-  %div= f.submit "Sign up"
-= render "devise/shared/links"
+.form-container
+  .well
+    %h2 Sign up
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, class: 'form-horizontal' }) do |f|
+      = devise_error_messages!
+      %div.form-group
+        = f.label :email, class: 'control-label'
+        %br/
+        = f.email_field :email, required: true, autofocus: true, class: 'form-control'
+      %div.form-group
+        = f.label :name, class: 'control-label'
+        %br/
+        = f.text_field :name, required: true, class: 'form-control'
+      %div.form-group
+        = f.label :location, class: 'control-label'
+        %br/
+        = f.select :location, options_for_select(User::LOCATION), { prompt: "Select your location"}, required: true, class: 'form-control'
+      %div.form-group
+        = f.label :course, class: 'control-label'
+        %br/
+        = f.select :course, options_for_select(User::COURSE), { prompt: "Select your course"}, required: true, class: 'form-control'
+      %div.form-group
+        = f.label :phone, class: 'control-label'
+        %br/
+        = f.telephone_field :phone, required: true, class: 'form-control'
+      %div.form-group
+        = f.label :password, class: 'control-label'
+        %br/
+        = f.password_field :password, required: true, autocomplete: "off", placeholder: '8 character minimum', class: 'form-control'
+      %div.form-group
+        = f.label :password_confirmation, class: 'control-label'
+        %br/
+        = f.password_field :password_confirmation, required: true, autocomplete: "off", class: 'form-control'
+      %div.form-group
+        = f.file_field :image
+        %br/
+      %div.form-group
+        = f.submit "Sign up", class: 'btn btn-lg btn-primary btn-block'
+    = render "devise/shared/links"

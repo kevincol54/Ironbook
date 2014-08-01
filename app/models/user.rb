@@ -14,4 +14,23 @@ class User < ActiveRecord::Base
                               access_type: 'app_folder'}
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+  LOCATION = [ 
+    "Ashville, NC",
+    "Atlanta, GA",
+    "Austin, TX",
+    "Charleston, SC",
+    "Columbia, SC",
+    "Durham, NC",
+    "Greenville, SC",
+    "Houston, TX",
+    "Spartanburg, SC",
+    "Tampa, FL"
+  ]
+
+  COURSE = [ 
+    "iOS Engineering",
+    "Rails Engineering",
+    "Front End Engineering"
+  ]
 end
